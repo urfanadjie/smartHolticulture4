@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '_MyHomePageState.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(const MyApp());
