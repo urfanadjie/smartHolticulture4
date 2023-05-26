@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:smart_holticulture_4/dashboard_page.dart';
+import 'package:smart_holticulture_4/monitor_page.dart';
+import 'package:smart_holticulture_4/profile_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -41,6 +44,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  static final List<Widget> navScreens = <Widget> [
+    const DashBoardPage(),
+    const MonitorHomePage(),
+    const ProfilePage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -50,58 +59,48 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      body:
-        CustomScrollView(
-          scrollDirection: Axis.vertical,
-          slivers: [
-            SliverAppBar.medium(
-              centerTitle: true,
-              title: const Text("Beranda", style: TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 24
-                ),
-              ),
-              backgroundColor: Colors.lightGreenAccent.withOpacity(0.9),
-            ),
-            const SliverToBoxAdapter(
-              child: Scrollbar(
-                thumbVisibility: true,
-                  thickness: 10,
-                  trackVisibility: true,
-                  child:
-                  SizedBox(
-                    height: 1000,
-                    child:
-                    Text("ini adalah penampilan data"),
-                  )
-              ),
-            ),
-          ],
+      body: Center(
+        child: navScreens.elementAt(myIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        onTap: (index) {
-          setState(() {
-            myIndex = index;
-          });
-        },
-        currentIndex: myIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            backgroundColor: Colors.lightGreenAccent,
-            label: "Beranda"
+      bottomNavigationBar: Container(
+        color: Colors.lightGreen.shade50,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.monitor),
-            backgroundColor: Colors.lightBlueAccent,
-            label: "Monitor"
+          child: GNav(
+            activeColor: Colors.white,
+            rippleColor: Colors.grey,
+            hoverColor: Colors.grey,
+            gap: 8,
+            iconSize: 20,
+            padding: const EdgeInsets.all(8),
+            duration: const Duration(milliseconds: 400),
+            tabBackgroundColor: Colors.lightGreenAccent.shade700,
+            color: Colors.black,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Beranda',
+              ),
+              GButton(
+                icon: Icons.monitor,
+                text: 'Monitor',
+              ),
+              GButton(
+                icon: Icons.person,
+                text: 'Profil',
+              )
+            ],
+            selectedIndex: myIndex,
+            onTabChange: (index) {
+              setState(() {
+                myIndex = index;
+              });
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            backgroundColor: Colors.lime,
-            label: "Akun"
-          )
-        ],
+        ),
       ),
     );
   }
