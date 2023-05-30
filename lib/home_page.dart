@@ -67,15 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
-              vertical: 8.0,
+              vertical: 16.0,
           ),
           child: GNav(
             activeColor: Colors.white,
             rippleColor: Colors.grey,
             hoverColor: Colors.grey,
             gap: 8,
-            iconSize: 20,
-            padding: const EdgeInsets.all(8),
+            iconSize: 24,
+            padding: const EdgeInsets.all(16),
             duration: const Duration(milliseconds: 400),
             tabBackgroundColor: Colors.lightGreenAccent.shade700,
             color: Colors.black,
