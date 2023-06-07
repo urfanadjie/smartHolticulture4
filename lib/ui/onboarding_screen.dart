@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+// import 'package:smart_holticulture_4/dashboard_page.dart';
+// import 'package:smart_holticulture_4/home_page_old.dart';
+import 'package:smart_holticulture_4/ui/root_page.dart';
+
+// import 'login_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -19,13 +24,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
-        title: const Text("Onboarding Screen"),
         actions: [
           Padding(
-              padding: EdgeInsets.only(right: 20, top: 20),
+            padding: const EdgeInsets.only(right: 20, top: 20),
             child: InkWell(
-              onTap: () => null, // to login screen, under construction
-              child: const Text('Skip', style: TextStyle(
+              onTap: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const RootPage()));
+              }, // to login screen, under construction
+              child: const Text(
+                'Skip',
+                style: TextStyle(
                   color: Colors.grey,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
@@ -39,7 +47,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         alignment: Alignment.bottomCenter,
         children: [
           PageView(
-            onPageChanged: (int page){
+            onPageChanged: (int page) {
               setState(() {
                 currentIndex = page;
               });
@@ -47,35 +55,64 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             controller: _pageController,
             children: [
               createPage(
-                image: 'assets/plants/plant_anthurium.png',
+                image: 'assets/plant/plant_anthurium.png',
                 title: Constants.titleOne,
                 description: Constants.descriptionOne,
               ),
               createPage(
-                image: 'assets/plant/plant_epiphyllum_anguliger.png',
+                image: 'assets/plant/plant_monsterra.png',
                 title: Constants.titleTwo,
                 description: Constants.descriptionTwo,
               ),
               createPage(
-                image: 'assets/plant/plant_ravenala_madagascariensis.png',
+                image: 'assets/plant/plant_sansevieria.png',
                 title: Constants.titleThree,
                 description: Constants.descriptionThree,
               ),
             ],
           ),
           Positioned(
-          bottom: 80,
-          left: 30,
-          child:
-            _buildIndicator(),
-          )
+            bottom: 80,
+            left: 30,
+            child: Row(
+              children: _buildIndicator(),
+            ),
+          ),
+          Positioned(
+            bottom: 60,
+            right: 30,
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Constants.primaryColor,
+              ),
+              child: IconButton(
+                icon: const Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white,),
+                onPressed: () {
+                  setState(() {
+                    if(currentIndex < 2){
+                      currentIndex++;
+                      if(currentIndex < 3){
+                        _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+                      }
+                    } else {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const RootPage()));
+                    }
+                  });
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
+  //Extra Widgets
+
   //Create the indicator decorations widget
-  Widget _indicator(bool isActive){
+  Widget _indicator(bool isActive) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
       height: 10.0,
@@ -89,14 +126,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   //Create Indicator list
-  List<Widget> _buildIndicator(){
+  List<Widget> _buildIndicator() {
     List<Widget> indicators = [];
 
-    for (int i = 0; i < 3; i++){
-      if(currentIndex == i) {
-        indicators
+    for (int i = 0; i < 3; i++) {
+      if (currentIndex == i) {
+        indicators.add(_indicator(true));
+      } else {
+        indicators.add(_indicator(false));
       }
     }
+    return indicators;
   }
 }
 
@@ -106,8 +146,11 @@ class createPage extends StatelessWidget {
   final String description;
 
   const createPage({
-    super.key, required this.image, required this.title, required this.description,
-  });
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -116,9 +159,15 @@ class createPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 350, child: Image.asset(image),),
-          const SizedBox(height: 20,),
-          Text(title,
+          SizedBox(
+            height: 350,
+            child: Image.asset(image),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            title,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Constants.primaryColor,
@@ -126,15 +175,21 @@ class createPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 20,),
-          Text(description, textAlign: TextAlign.center,
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            description,
+            textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w400,
               color: Colors.grey,
             ),
           ),
-          const SizedBox(height: 20,),
+          const SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );

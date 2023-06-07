@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:smart_holticulture_4/ui/onboarding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,9 +36,8 @@ class _MyAppState extends State<MyApp> {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreenAccent),
-        useMaterial3: true,
       ),
-      home: const MyHomePage(title: "",),
+      home: const OnboardingScreen(),
     );
   }
 }
