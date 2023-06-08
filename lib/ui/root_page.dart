@@ -1,12 +1,13 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/models/plants.dart';
 import 'package:smart_holticulture_4/ui/scan_page.dart';
 import 'package:smart_holticulture_4/ui/screens/cart_page.dart';
 import 'package:smart_holticulture_4/ui/screens/favorite_page.dart';
 import 'package:smart_holticulture_4/ui/screens/home_page.dart';
 import 'package:page_transition/page_transition.dart';
 
-import '../constants/constants_value.dart';
 import '../profile_page.dart';
 
 class RootPage extends StatefulWidget {
@@ -17,15 +18,19 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  List<Plant> favorites = [];
+  List<Plant> myCart = [];
   int _bottomNavIndex = 0;
 
   //List of the pages
-  List<Widget> pages = const [
-    HomePage(),
-    FavoritePage(),
-    CartPage(),
-    ProfilePage(),
-  ];
+  List<Widget> _widgetOptions(){
+    return [
+      const HomePage(),
+      FavoritePage(favoritedPlants: favorites,),
+      CartPage(addedToCartPlants: myCart,),
+      const ProfilePage(),
+    ];
+  }
 
   //List of the pages icons
   List<IconData> iconList = [
@@ -68,7 +73,7 @@ class _RootPageState extends State<RootPage> {
       ),
       body: IndexedStack(
         index: _bottomNavIndex,
-        children: pages,
+        children: _widgetOptions(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -76,8 +81,8 @@ class _RootPageState extends State<RootPage> {
               child: const ScanPage(),
               type: PageTransitionType.bottomToTop));
         },
-        child: const Icon(Icons.qr_code_scanner, color: Colors.white,),
         backgroundColor: Constants.primaryColor,
+        child: const Icon(Icons.qr_code_scanner, color: Colors.white,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -91,6 +96,11 @@ class _RootPageState extends State<RootPage> {
         onTap: (index){
           setState(() {
             _bottomNavIndex = index;
+            final List<Plant> favoritedPlants = Plant.getFavoritedPlants();
+            final List<Plant> addedToCartPlants = Plant.addedToCartPlants();
+
+            favorites = favoritedPlants;
+            myCart = addedToCartPlants.toSet().toList();
           });
         },
       ),
