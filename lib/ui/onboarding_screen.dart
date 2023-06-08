@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
-// import 'package:smart_holticulture_4/dashboard_page.dart';
-// import 'package:smart_holticulture_4/home_page_old.dart';
-import 'package:smart_holticulture_4/ui/root_page.dart';
-
-// import 'login_page.dart';
+import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
@@ -29,7 +25,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             padding: const EdgeInsets.only(right: 20, top: 20),
             child: InkWell(
               onTap: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const RootPage()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) => const SignInPage()));
               }, // to login screen, under construction
               child: const Text(
                 'Skip',
@@ -88,16 +85,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 color: Constants.primaryColor,
               ),
               child: IconButton(
-                icon: const Icon(Icons.arrow_forward_ios, size: 24, color: Colors.white,),
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 24,
+                  color: Colors.white,
+                ),
                 onPressed: () {
                   setState(() {
-                    if(currentIndex < 2){
+                    if (currentIndex < 2) {
                       currentIndex++;
-                      if(currentIndex < 3){
-                        _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+                      if (currentIndex < 3) {
+                        _pageController.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                       }
                     } else {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> const RootPage()));
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => const SignInPage()));
                     }
                   });
                 },
