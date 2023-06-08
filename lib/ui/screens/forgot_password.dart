@@ -20,13 +20,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  height: 95,
-                  child: Image.asset('assets/plant/plant_anthurium.png')),
+              Center(
+                child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Image.asset('assets/ilustrations/forgot_password_ilustration.png')),
+              ),
               const Text(
                 'Reset Password',
                 style: TextStyle(
@@ -41,6 +45,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 obscureText: false,
                 hintText: 'Enter Email',
                 icon: Icons.alternate_email,
+              ),
+              const SizedBox(
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {
@@ -70,7 +77,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {

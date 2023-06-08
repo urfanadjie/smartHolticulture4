@@ -22,9 +22,12 @@ class SignInPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 95,
-                child: Image.asset('assets/plant/plant_anthurium.png')),
+              Center(
+                child: SizedBox(
+                  height: 300,
+                  width: 300,
+                  child: Image.asset('assets/ilustrations/login_ilustration.png')),
+              ),
               const Text(
                 'Sign In',
                 style: TextStyle(
@@ -40,13 +43,16 @@ class SignInPage extends StatelessWidget {
                 hintText: 'Enter Email',
                 icon: Icons.alternate_email,
               ),
+              const SizedBox(
+                height: 30,
+              ),
               const CustomTextfield(
                 obscureText: true,
                 hintText: 'Enter Password',
                 icon: Icons.lock,
               ),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {
@@ -131,10 +137,6 @@ class SignInPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      height: 30,
-                      child: Icon(Icons.face),
-                    ),
                     Text(
                       'Masuk dengan Google',
                       style: TextStyle(
@@ -146,7 +148,7 @@ class SignInPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {

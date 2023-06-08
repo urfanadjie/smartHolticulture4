@@ -18,7 +18,9 @@ class CustomTextfield extends StatelessWidget {
         color: Constants.blackColor,
       ),
       decoration: InputDecoration(
-        border: InputBorder.none,
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(),
+        ),
         prefixIcon: Icon(icon, color: Constants.primaryColor.withOpacity(.3),),
         hintText: hintText,
       ),

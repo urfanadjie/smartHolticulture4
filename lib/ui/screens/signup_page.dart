@@ -20,13 +20,17 @@ class _SignUpState extends State<SignUp> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                  height: 95,
-                  child: Image.asset('assets/plant/plant_anthurium.png')),
+              Center(
+                child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Image.asset('assets/ilustrations/sign_up_ilustration.png')),
+              ),
               const Text(
                 'Mendaftar',
                 style: TextStyle(
@@ -42,10 +46,16 @@ class _SignUpState extends State<SignUp> {
                 hintText: 'Enter Email',
                 icon: Icons.alternate_email,
               ),
+              const SizedBox(
+                height: 30,
+              ),
               const CustomTextfield(
                 obscureText: false,
                 hintText: 'Full Name',
                 icon: Icons.alternate_email,
+              ),
+              const SizedBox(
+                height: 30,
               ),
               const CustomTextfield(
                 obscureText: true,
@@ -53,7 +63,7 @@ class _SignUpState extends State<SignUp> {
                 icon: Icons.lock,
               ),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {},
@@ -84,13 +94,13 @@ class _SignUpState extends State<SignUp> {
                   Expanded(child: Divider()),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text('OR'),
+                    child: Text('ATAU'),
                   ),
                   Expanded(child: Divider()),
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               Container(
                 width: size.width,
@@ -102,10 +112,6 @@ class _SignUpState extends State<SignUp> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    SizedBox(
-                      height: 30,
-                      child: Icon(Icons.face),
-                    ),
                     Text(
                       'Daftar dengan Google',
                       style: TextStyle(
@@ -117,7 +123,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               GestureDetector(
                 onTap: () {
