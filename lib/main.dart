@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/ui/onboarding_screen.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -13,6 +13,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

@@ -100,8 +100,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             curve: Curves.easeIn);
                       }
                     } else {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => const SignInPage()));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const SignInPage()));
                     }
                   });
                 },

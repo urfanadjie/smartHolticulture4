@@ -1,5 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/ui/screens/monitoring/plant_aglaonema.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({Key? key}) : super(key: key);
@@ -9,6 +11,9 @@ class ScanPage extends StatefulWidget {
 }
 
 class _ScanPageState extends State<ScanPage> {
+  final Future<FirebaseApp> _fApp = Firebase.initializeApp();
+  String realTimeValue = '0';
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -52,7 +57,9 @@ class _ScanPageState extends State<ScanPage> {
                       color: Constants.primaryColor.withOpacity(.15),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute (builder: (BuildContext context) => PlantAglaonema(),),);
+                      },
                       icon: Icon(
                         Icons.share,
                         color: Constants.primaryColor,
@@ -72,26 +79,51 @@ class _ScanPageState extends State<ScanPage> {
               height: size.height * .8,
               padding: const EdgeInsets.all(20),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/icons_ui/scan_image.png',
-                      height: 100,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'Tap to Scan',
-                      style: TextStyle(
-                        color: Constants.primaryColor.withOpacity(.80),
-                        fontWeight: FontWeight.w500,
-                        fontSize: 20,
+                child: Container(
+                  color: Colors.yellow,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/icons_ui/scan_image.png',
+                        height: 100,
                       ),
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        'Tap to Scan',
+                        style: TextStyle(
+                          color: Constants.primaryColor.withOpacity(.80),
+                          fontWeight: FontWeight.w500,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 50,
+            right: 20,
+            left: 20,
+            child: Center(
+              child: Container(
+                color: Colors.red,
+                child: FutureBuilder(
+                  future: _fApp,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text("Something wrong with Firebase", style: TextStyle(color: Colors.white),);
+                    } else if (snapshot.hasData) {
+                      return const Text("Info : Firebase Initialized", style: TextStyle(color: Colors.white),);
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
+                  },
                 ),
               ),
             ),
