@@ -44,6 +44,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_bottom_navigation_bar: ^1.2.0
   page_transition: ^2.0.9
+  syncfusion_flutter_gauges: ^21.2.10
 
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen
