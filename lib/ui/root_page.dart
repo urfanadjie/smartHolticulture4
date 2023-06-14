@@ -82,7 +82,7 @@ class _RootPageState extends State<RootPage> {
               type: PageTransitionType.bottomToTop));
         },
         backgroundColor: Constants.primaryColor,
-        child: const Icon(Icons.qr_code_scanner, color: Colors.white,),
+        child: const Icon(Icons.monitor, color: Colors.white,),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(

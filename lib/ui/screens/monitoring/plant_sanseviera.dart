@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-class PlantAglaonema extends StatefulWidget {
-  const PlantAglaonema({super.key});
+class PlantSanseviera extends StatefulWidget {
+  const PlantSanseviera({super.key});
 
   @override
-  State<PlantAglaonema> createState() => _PlantAglaonemaState();
+  State<PlantSanseviera> createState() => _PlantSansevieraState();
 }
 
-class _PlantAglaonemaState extends State<PlantAglaonema> {
+class _PlantSansevieraState extends State<PlantSanseviera> {
   DatabaseReference dbRef = FirebaseDatabase.instance.ref().child('tanaman');
   var data;
 
@@ -30,12 +30,12 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
         setState(() {
           dataObject = event.snapshot.value;
           print(dataObject);
-          dataTemp = dataObject['aglaonema']['temp'];
-          dataHumy = dataObject['aglaonema']['humy'];
-          dataLight = dataObject['aglaonema']['lumens'];
-          dataSoilMoisture = dataObject['aglaonema']['pH'];
-          dataStatus = dataObject['aglaonema']['status'];
-          dataName = dataObject['aglaonema']['name'];
+          dataTemp = dataObject['sanseviera']['temp'];
+          dataHumy = dataObject['sanseviera']['humy'];
+          dataLight = dataObject['sanseviera']['lumens'];
+          dataSoilMoisture = dataObject['sanseviera']['pH'];
+          dataStatus = dataObject['sanseviera']['status'];
+          dataName = dataObject['sanseviera']['name'];
         });
       }
     });
@@ -84,7 +84,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
         title: GaugeTitle(
             text: "Temperatur",
             textStyle:
-                const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+            const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
         axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum: 150, ranges: <GaugeRange>[
             GaugeRange(
@@ -137,6 +137,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
 
   Widget _getLinearGauge() {
     return Container(
+      margin: EdgeInsets.all(10),
       child: SfLinearGauge(
           minimum: 0.0,
           maximum: 100.0,
@@ -148,7 +149,6 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
               edgeStyle: LinearEdgeStyle.bothFlat,
               thickness: 15.0,
               borderColor: Colors.grey)),
-      margin: EdgeInsets.all(10),
     );
   }
 
@@ -159,7 +159,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
         title: GaugeTitle(
             text: "Kelembaban",
             textStyle:
-                const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+            const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
         axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum: 100, ranges: <GaugeRange>[
             GaugeRange(
