@@ -1,9 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
 import 'package:smart_holticulture_4/ui/screens/widgets/custom_textfield.dart';
 import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -13,7 +13,12 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final Future<FirebaseApp> _fApp = Firebase.initializeApp();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final Future<FirebaseApp> _fApp = Firebase.initializeApp();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +49,19 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 30,
               ),
-              const CustomTextfield(
+              TextField(
                 obscureText: false,
-                hintText: 'Enter Email',
-                icon: Icons.alternate_email,
+                style: TextStyle(
+                  color: Constants.blackColor,
+                ),
+                decoration: InputDecoration(
+                  border: const UnderlineInputBorder(
+                    borderSide: BorderSide(),
+                  ),
+                  prefixIcon: Icon(Icons.email, color: Constants.primaryColor.withOpacity(.3),),
+                  hintText: 'Enter Email',
+                ),
+                cursorColor: Constants.blackColor.withOpacity(.5),
               ),
               const SizedBox(
                 height: 30,

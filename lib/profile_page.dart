@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
 import 'package:smart_holticulture_4/ui/screens/widgets/profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -10,6 +11,12 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePage extends State<ProfilePage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -77,10 +84,16 @@ class _ProfilePage extends State<ProfilePage> {
                 width: size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
-                    ProfileWidget(
-                      icon: Icons.person,
-                      title: 'Profil Saya',
+                  children: [
+                    GestureDetector(
+                      child: ProfileWidget(
+                        icon: Icons.person,
+                        title: 'Profil Saya',
+                      ),
+                      onTap: (){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => const SignInPage()));
+                      },
                     ),
                     ProfileWidget(
                       icon: Icons.settings,
