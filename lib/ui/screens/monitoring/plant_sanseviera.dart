@@ -30,7 +30,7 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
         setState(() {
           dataObject = event.snapshot.value;
           print(dataObject);
-          dataTemp = dataObject['sanseviera']['temp'];
+          dataTemp = dataObject['sanseviera']['temp'].toInt();
           dataHumy = dataObject['sanseviera']['humy'];
           dataLight = dataObject['sanseviera']['lumens'];
           dataSoilMoisture = dataObject['sanseviera']['pH'];

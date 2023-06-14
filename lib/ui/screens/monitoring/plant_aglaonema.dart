@@ -30,7 +30,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
         setState(() {
           dataObject = event.snapshot.value;
           print(dataObject);
-          dataTemp = dataObject['aglaonema']['temp'];
+          dataTemp = dataObject['aglaonema']['temp'].toInt();
           dataHumy = dataObject['aglaonema']['humy'];
           dataLight = dataObject['aglaonema']['lumens'];
           dataSoilMoisture = dataObject['aglaonema']['pH'];

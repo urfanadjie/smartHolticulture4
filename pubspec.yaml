@@ -45,6 +45,7 @@ dependencies:
   animated_bottom_navigation_bar: ^1.2.0
   page_transition: ^2.0.9
   syncfusion_flutter_gauges: ^21.2.10
+  shared_preferences: ^2.1.2
 
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen

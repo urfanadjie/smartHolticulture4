@@ -15,6 +15,7 @@ class _ProfilePage extends State<ProfilePage> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           padding: const EdgeInsets.all(16),
           height: size.height,

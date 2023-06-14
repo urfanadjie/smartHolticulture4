@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smart_holticulture_4/ui/onboarding_screen.dart';
+import 'package:smart_holticulture_4/ui/root_page.dart';
+
+int? initScreen;
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  initScreen = preferences.getInt('initScreen');
+  await preferences.setInt('initScreen', 1);
+  print(initScreen);
   runApp(const MyApp());
 }
 
@@ -38,7 +47,12 @@ class _MyAppState extends State<MyApp> {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightGreenAccent),
       ),
-      home: const OnboardingScreen(),
+      initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+      routes: {
+        'home' : (context) => RootPage(),
+        'onboard' : (context) => OnboardingScreen(),
+      },
+      // home: const OnboardingScreen(),
     );
   }
 }
