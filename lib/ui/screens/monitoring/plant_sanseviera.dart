@@ -107,6 +107,7 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
                 endWidth: 10)
           ], pointers: <GaugePointer>[
             NeedlePointer(
+              enableAnimation: true,
               value: dataTemp.toDouble(),
             )
           ], annotations: <GaugeAnnotation>[
@@ -176,6 +177,7 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
                 endWidth: 10),
           ], pointers: <GaugePointer>[
             NeedlePointer(
+              enableAnimation: true,
               value: dataHumy.toDouble(),
             )
           ], annotations: <GaugeAnnotation>[
@@ -226,6 +228,7 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
                 endWidth: 10),
           ], pointers: <GaugePointer>[
             NeedlePointer(
+              enableAnimation: true,
               value: dataSoilMoisture.toDouble(),
             )
           ], annotations: <GaugeAnnotation>[
@@ -276,6 +279,7 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
                 endWidth: 10),
           ], pointers: <GaugePointer>[
             NeedlePointer(
+              enableAnimation: true,
               value: dataLight.toDouble(),
             )
           ], annotations: <GaugeAnnotation>[
