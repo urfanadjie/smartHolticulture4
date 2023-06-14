@@ -3,6 +3,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
 import 'package:smart_holticulture_4/ui/screens/widgets/custom_textfield.dart';
 import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -12,6 +13,8 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  final Future<FirebaseApp> _fApp = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

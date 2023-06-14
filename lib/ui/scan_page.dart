@@ -100,7 +100,7 @@ class _ScanPageState extends State<ScanPage> {
                                   TextButton(
                                     child: const Text('Monitor'),
                                     onPressed: () {
-                                      Navigator.pushReplacement(context,
+                                      Navigator.push(context,
                                           MaterialPageRoute(builder: (_) => PlantAglaonema()));
                                     },
                                   ),
@@ -127,7 +127,7 @@ class _ScanPageState extends State<ScanPage> {
                                   TextButton(
                                     child: const Text('Monitor'),
                                     onPressed: () {
-                                      Navigator.pushReplacement(context,
+                                      Navigator.push(context,
                                           MaterialPageRoute(builder: (_) => PlantSanseviera()));
                                     },
                                   ),
