@@ -23,7 +23,6 @@ class SignInPageState extends State<SignInPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     final Future<FirebaseApp> _fApp = Firebase.initializeApp();
   }
