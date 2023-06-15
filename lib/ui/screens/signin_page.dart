@@ -4,7 +4,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
 import 'package:smart_holticulture_4/functions/authFunctions.dart';
 import 'package:smart_holticulture_4/ui/root_page.dart';
-import 'package:smart_holticulture_4/ui/screens/forgot_password.dart';
+// import 'package:smart_holticulture_4/ui/screens/forgot_password.dart';
 import 'package:smart_holticulture_4/ui/screens/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

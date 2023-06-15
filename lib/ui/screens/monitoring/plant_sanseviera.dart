@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:smart_holticulture_4/constants/constants_value.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class PlantSanseviera extends StatefulWidget {
@@ -57,13 +58,42 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
           child: Center(
             child: Column(
               children: [
+                _tampilStatus(),
+                const SizedBox(height: 30,),
                 _getGauge(),
                 _getRadialGaugeHumy(),
                 _getRadialGaugeSoilMoisture(),
+                _tampilLampu()
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+  Widget _tampilStatus() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 30),
+      decoration: BoxDecoration(
+        color: Colors.lightGreenAccent,
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Status',
+            style: TextStyle(color: Constants.primaryColor),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            dataStatus,
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: Constants.primaryColor, fontSize: 24),
+          ),
+        ],
       ),
     );
   }
@@ -80,10 +110,10 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
     return SfRadialGauge(
         enableLoadingAnimation: true,
         animationDuration: 4500,
-        title: GaugeTitle(
-            text: "Temperatur",
+        title: const GaugeTitle(
+            text: "Temperatur (°C)",
             textStyle:
-            const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+            TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
         axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum: 150, ranges: <GaugeRange>[
             GaugeRange(
@@ -111,23 +141,12 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
             )
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
-                widget: Column(
-                  children: [
-                    Text(
-                      dataTemp.toString(),
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      dataStatus,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                widget: Text(
+                  dataTemp.toString(),
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 angle: 90,
                 positionFactor: 0.5)
@@ -156,10 +175,10 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
     return SfRadialGauge(
         enableLoadingAnimation: true,
         animationDuration: 4500,
-        title: GaugeTitle(
-            text: "Kelembaban",
+        title: const GaugeTitle(
+            text: "Kelembaban (%)",
             textStyle:
-            const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+            TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
         axes: <RadialAxis>[
           RadialAxis(minimum: 0, maximum: 100, ranges: <GaugeRange>[
             GaugeRange(
@@ -181,16 +200,12 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
             )
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
-                widget: Column(
-                  children: [
-                    Text(
-                      dataHumy.toString(),
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                widget: Text(
+                  dataHumy.toString(),
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 angle: 90,
                 positionFactor: 0.5)
@@ -232,21 +247,44 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
             )
           ], annotations: <GaugeAnnotation>[
             GaugeAnnotation(
-                widget: Column(
-                  children: [
-                    Text(
-                      dataSoilMoisture.toString(),
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                widget: Text(
+                  dataSoilMoisture.toString(),
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 angle: 90,
                 positionFactor: 0.5)
           ])
         ]);
+  }
+
+  Widget _tampilLampu() {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(vertical: 30),
+      decoration: BoxDecoration(
+        color: Constants.primaryColor,
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: Column(
+        children: [
+          const Text(
+            'Kondisi Cahaya',
+            style: TextStyle(color: Colors.white),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Text(
+            dataLight,
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),
+          )
+        ],
+      ),
+    );
   }
 
 }

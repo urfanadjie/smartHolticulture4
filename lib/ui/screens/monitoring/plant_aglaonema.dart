@@ -59,7 +59,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
             child: Column(
               children: [
                 _tampilStatus(),
-                SizedBox(height: 30,),
+                const SizedBox(height: 30,),
                 _getGauge(),
                 _getRadialGaugeHumy(),
                 _getRadialGaugeSoilMoisture(),

@@ -3,26 +3,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 bool isLoginned = false;
 String loginMessage = "";
 
-signup(String email, String password) async {
-  try {
-    UserCredential credential = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    print('-----------Success Registration-------------');
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'weak-password') {
-      print('The password provided is too weak.');
-      return isLoginned = true;
-    } else if (e.code == 'email-already-in-use') {
-      print('The account already exists for that email.');
-      return isLoginned = true;
-    }
-  } catch (e) {
-    print(e);
-  }
-}
+// signup(String email, String password) async {
+//   try {
+//     UserCredential credential = await FirebaseAuth.instance
+//         .createUserWithEmailAndPassword(
+//       email: email,
+//       password: password,
+//     );
+//     print('-----------Success Registration-------------');
+//   } on FirebaseAuthException catch (e) {
+//     if (e.code == 'weak-password') {
+//       print('The password provided is too weak.');
+//     } else if (e.code == 'email-already-in-use') {
+//       print('The account already exists for that email.');
+//     }
+//   } catch (e) {
+//     print(e);
+//   }
+// }
 
 // signin(String email, password) async {
 //   try {

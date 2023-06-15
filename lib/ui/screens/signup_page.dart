@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/ui/root_page.dart';
 import 'package:smart_holticulture_4/ui/screens/widgets/custom_textfield.dart';
 import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
 
@@ -119,26 +121,6 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 30,
               ),
-              Container(
-                width: size.width,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Constants.primaryColor),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'Daftar dengan Google',
-                      style: TextStyle(
-                        color: Constants.blackColor,
-                        fontSize: 18.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               const SizedBox(
                 height: 30,
               ),
@@ -175,4 +157,45 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+  signup(String email, String password) async {
+    try {
+      UserCredential credential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      print('-----------Success Registration-------------');
+      Navigator.pop(context, PageTransition(
+        child: const SignInPage(),
+        type: PageTransitionType.bottomToTop,
+      ));
+
+          } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  duration: Duration(seconds: 3),
+                  content: Container(
+                    child: Text('Password terlalu pendek'),
+                  )
+              )
+          );
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                  duration: Duration(seconds: 3),
+                  content: Container(
+                    child: Text('Email sudah ada'),
+                  )
+              )
+          );
+        }
+      } catch (e) {
+      print(e);
+    }
+  }
+
 }
+
