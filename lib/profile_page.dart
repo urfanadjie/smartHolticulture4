@@ -55,7 +55,7 @@ class _ProfilePage extends State<ProfilePage> {
                 child: Row(
                   children: [
                     Text(
-                      'Urfan Adjie',
+                      'User',
                       style: TextStyle(
                         color: Constants.blackColor,
                         fontSize: 20,
@@ -72,7 +72,7 @@ class _ProfilePage extends State<ProfilePage> {
                 ),
               ),
               Text(
-                'hawaiiditamang@gmail.com',
+                'smartHolticulture Account',
                 style: TextStyle(
                   color: Constants.blackColor.withOpacity(.3),
                 ),
