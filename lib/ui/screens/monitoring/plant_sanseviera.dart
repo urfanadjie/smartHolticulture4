@@ -60,7 +60,6 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
                 _getGauge(),
                 _getRadialGaugeHumy(),
                 _getRadialGaugeSoilMoisture(),
-                _getRadialGaugeLight(),
               ],
             ),
           ),
@@ -250,56 +249,6 @@ class _PlantSansevieraState extends State<PlantSanseviera> {
         ]);
   }
 
-  Widget _getRadialGaugeLight() {
-    return SfRadialGauge(
-        enableLoadingAnimation: true,
-        animationDuration: 4500,
-        title: const GaugeTitle(
-            text: "Cahaya",
-            textStyle: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-        axes: <RadialAxis>[
-          RadialAxis(minimum: 100, maximum: 1024, ranges: <GaugeRange>[
-            GaugeRange(
-                startValue: 100,
-                endValue: 500,
-                color: Colors.green,
-                startWidth: 10,
-                endWidth: 10),
-            GaugeRange(
-                startValue: 500,
-                endValue: 900,
-                color: Colors.orange,
-                startWidth: 10,
-                endWidth: 10),
-            GaugeRange(
-                startValue: 900,
-                endValue: 1024,
-                color: Colors.orange,
-                startWidth: 10,
-                endWidth: 10),
-          ], pointers: <GaugePointer>[
-            NeedlePointer(
-              enableAnimation: true,
-              value: dataLight.toDouble(),
-            )
-          ], annotations: <GaugeAnnotation>[
-            GaugeAnnotation(
-                widget: Column(
-                  children: [
-                    Text(
-                      dataLight.toString(),
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                angle: 90,
-                positionFactor: 0.5)
-          ])
-        ]);
-  }
 }
 
 class PlantData {
