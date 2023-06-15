@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/functions/authFunctions.dart';
 import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
 import 'package:smart_holticulture_4/ui/screens/widgets/profile_widget.dart';
 
@@ -91,8 +92,19 @@ class _ProfilePage extends State<ProfilePage> {
                         title: 'Profil Saya',
                       ),
                       onTap: (){
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => const SignInPage()));
+                        if (isLoginned == true) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  duration: Duration(seconds: 5),
+                                  content: Container(
+                                    child: Text('Sudah Login'),
+                                  )
+                              )
+                          );
+                        } else {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => const SignInPage()));
+                        };
                       },
                     ),
                     ProfileWidget(
@@ -110,9 +122,27 @@ class _ProfilePage extends State<ProfilePage> {
                     ProfileWidget(
                       icon: Icons.share,
                       title: 'Bagikan Aplikasi',
-                    ),ProfileWidget(
-                      icon: Icons.logout,
-                      title: 'Log Out',
+                    ),GestureDetector(
+                      onTap: () {
+                        if (isLoginned == false) {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => const SignInPage()));
+                        } else {
+                          isLoginned = false;
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  duration: Duration(seconds: 5),
+                                  content: Container(
+                                    child: Text('Berhasil Logout'),
+                                  )
+                              )
+                          );
+                        };
+                      },
+                      child: ProfileWidget(
+                        icon: Icons.logout,
+                        title: 'Log Out',
+                      ),
                     ),
                   ],
                 ),

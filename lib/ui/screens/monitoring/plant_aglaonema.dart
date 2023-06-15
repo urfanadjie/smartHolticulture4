@@ -16,7 +16,7 @@ class _PlantAglaonemaState extends State<PlantAglaonema> {
   var dataObject;
 
   var dataTemp = 0;
-  var dataLight = 0;
+  var dataLight = "";
   var dataHumy = 0;
   var dataName = "";
   var dataStatus = "";

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_holticulture_4/constants/constants_value.dart';
+import 'package:smart_holticulture_4/ui/root_page.dart';
 import 'package:smart_holticulture_4/ui/screens/signin_page.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: InkWell(
               onTap: () {
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (_) => const SignInPage()));
+                    MaterialPageRoute(builder: (_) => const RootPage()));
               }, // to login screen, under construction
               child: const Text(
                 'Skip',
@@ -103,7 +104,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const SignInPage()));
+                              builder: (_) => const RootPage()));
                     }
                   });
                 },

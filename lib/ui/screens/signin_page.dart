@@ -6,7 +6,6 @@ import 'package:smart_holticulture_4/functions/authFunctions.dart';
 import 'package:smart_holticulture_4/ui/root_page.dart';
 import 'package:smart_holticulture_4/ui/screens/forgot_password.dart';
 import 'package:smart_holticulture_4/ui/screens/signup_page.dart';
-import 'package:smart_holticulture_4/ui/screens/widgets/custom_textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInPage extends StatefulWidget {
@@ -44,10 +43,12 @@ class SignInPageState extends State<SignInPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: SizedBox(
+                  child:
+                  SizedBox(
                       height: 300,
                       width: 300,
-                      child: Image.asset('assets/ilustrations/login_ilustration.png')),
+                      child: Image.asset(
+                          'assets/ilustrations/login_ilustration.png')),
                 ),
                 const Text(
                   'Sign In',
@@ -69,12 +70,15 @@ class SignInPageState extends State<SignInPage> {
                     border: const UnderlineInputBorder(
                       borderSide: BorderSide(),
                     ),
-                    prefixIcon: Icon(Icons.email, color: Constants.primaryColor.withOpacity(.3),),
+                    prefixIcon: Icon(
+                      Icons.email,
+                      color: Constants.primaryColor.withOpacity(.3),
+                    ),
                     hintText: 'Enter Email',
                   ),
                   cursorColor: Constants.blackColor.withOpacity(.5),
                   validator: (value) {
-                    if(!(value.toString().contains('@'))) {
+                    if (!(value.toString().contains('@'))) {
                       return ' Invalid Email';
                     } else {
                       return null;
@@ -99,12 +103,15 @@ class SignInPageState extends State<SignInPage> {
                     border: const UnderlineInputBorder(
                       borderSide: BorderSide(),
                     ),
-                    prefixIcon: Icon(Icons.password, color: Constants.primaryColor.withOpacity(.3),),
+                    prefixIcon: Icon(
+                      Icons.password,
+                      color: Constants.primaryColor.withOpacity(.3),
+                    ),
                     hintText: 'Enter Password',
                   ),
                   cursorColor: Constants.blackColor.withOpacity(.5),
                   validator: (value) {
-                    if(value.toString().length<6) {
+                    if (value.toString().length < 6) {
                       return ' Invalid Email';
                     } else {
                       return null;
@@ -134,7 +141,7 @@ class SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding:
-                    const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
                     child: Center(
                       child: TextButton(
                         onPressed: () {
@@ -143,19 +150,21 @@ class SignInPageState extends State<SignInPage> {
                             signin(email, password);
                             isLogin = isLoginned;
                             print(isLoginned);
-                            if (isLogin == true) {
-                              Navigator.pop(
-                                  context,
-                                  PageTransition(
-                                      child: const RootPage(),
-                                      type: PageTransitionType.bottomToTop)
-                              );
-                            }
-                          } else {
-                            return;
+                            isLogin = true;
+
+                          }
+                          if (isLogin == true) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    duration: Duration(seconds: 3),
+                                    content: Container(
+                                      child: Text('Sukses Login'),
+                                    )
+                                )
+                            );
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Sign In',
                           style: TextStyle(
                             color: Colors.white,
@@ -169,38 +178,38 @@ class SignInPageState extends State<SignInPage> {
                 const SizedBox(
                   height: 30,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                            child: const ForgotPasswordPage(),
-                            type: PageTransitionType.bottomToTop));
-                  },
-                  child: Center(
-                    child: Text.rich(TextSpan(
-                      children: [
-                        TextSpan(
-                          text: 'Lupa Password? ',
-                          style: TextStyle(
-                            color: Constants.blackColor,
-                          ),
-                        ),
-                        TextSpan(
-                          text: 'Reset disini',
-                          style: TextStyle(
-                            color: Constants.primaryColor,
-                          ),
-                        ),
-                      ],
-                    )),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     Navigator.pushReplacement(
+                //         context,
+                //         PageTransition(
+                //             child: const ForgotPasswordPage(),
+                //             type: PageTransitionType.bottomToTop));
+                //   },
+                //   child: Center(
+                //     child: Text.rich(TextSpan(
+                //       children: [
+                //         TextSpan(
+                //           text: 'Lupa Password? ',
+                //           style: TextStyle(
+                //             color: Constants.blackColor,
+                //           ),
+                //         ),
+                //         TextSpan(
+                //           text: 'Reset disini',
+                //           style: TextStyle(
+                //             color: Constants.primaryColor,
+                //           ),
+                //         ),
+                //       ],
+                //     )),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     Expanded(child: Divider()),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -212,26 +221,27 @@ class SignInPageState extends State<SignInPage> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: size.width,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Constants.primaryColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        'Masuk dengan Google',
-                        style: TextStyle(
-                          color: Constants.blackColor,
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   width: size.width,
+                //   decoration: BoxDecoration(
+                //     border: Border.all(color: Constants.primaryColor),
+                //     borderRadius: BorderRadius.circular(10),
+                //   ),
+                //   padding:
+                //       const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     children: [
+                //       Text(
+                //         'Masuk dengan Google',
+                //         style: TextStyle(
+                //           color: Constants.blackColor,
+                //           fontSize: 18.0,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 const SizedBox(
                   height: 30,
                 ),
@@ -269,4 +279,46 @@ class SignInPageState extends State<SignInPage> {
       ),
     );
   }
+
+
+  signin(String email, password) async {
+    try {
+      UserCredential credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: password
+      );
+      isLoginned = true;
+      print('-----------Success Login-------------');
+      Navigator.pop(context, PageTransition(
+          child: const RootPage(),
+          type: PageTransitionType.bottomToTop,
+        ),
+      );
+    }
+    on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+        loginMessage = 'Akun tidak ada!.';
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                duration: Duration(seconds: 3),
+                content: Container(
+                  child: Text('Akun tidak ditemukan'),
+                )
+            )
+        );
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+        loginMessage = 'Password Salah!.';
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+                content: Text('Password Salah'),
+                duration: Duration(seconds: 5)
+            )
+        );
+      }
+    }
+  }
+
+
 }
